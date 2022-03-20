@@ -1,4 +1,5 @@
 from functools import cache
+from time import time
 
 
 def set_value(clauses, var, value):
@@ -26,10 +27,14 @@ def dp(qs, clauses, ind):
     return all(values) if q == "A" else any(values)
 
 
+t = time()
 n, m = map(int, input().split())
 quantifiers = input()
 clauses = []
 for i in range(m):
     clauses.append(tuple(map(int, input().split())))
 clauses = frozenset(cls for cls in clauses if cls)
+print(time() - t)
+t = time()
 print(dp("AE", clauses, 1))
+print(time() - t)
