@@ -24,3 +24,12 @@ def dp(qs, clauses, ind):
     q = quantifiers[ind - 1]
     values = (dp(qs, set_value(clauses, ind, v), ind + 1) for v in range(2))
     return all(values) if q == "A" else any(values)
+
+
+n, m = map(int, input().split())
+quantifiers = input()
+clauses = []
+for i in range(m):
+    clauses.append(tuple(map(int, input().split())))
+clauses = frozenset(cls for cls in clauses if cls)
+print(dp("AE", clauses, 1))
