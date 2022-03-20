@@ -1,3 +1,6 @@
+from functools import cache
+
+
 def set_value(clauses, var, value):
     new_clauses = set()
     for cls in clauses:
@@ -10,3 +13,14 @@ def set_value(clauses, var, value):
         if cls is not None:
             new_clauses.add(cls)
     return frozenset(new_clauses)
+
+
+@cache
+def dp(qs, clauses, ind):
+    if clauses is None:
+        return 0
+    if len(clauses) == 0:
+        return 1
+    q = quantifiers[ind - 1]
+    values = (dp(qs, set_value(clauses, ind, v), ind + 1) for v in range(2))
+    return all(values) if q == "A" else any(values)
