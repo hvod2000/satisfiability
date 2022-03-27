@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 from functools import cache
 from time import time
+import sys
+
+print(sys.setrecursionlimit(2000))
 
 
 @dataclass(frozen=True)
@@ -17,7 +20,7 @@ class QBCNF:
                 old_cls = cls
                 cls = None if (sign * ((value > 0) or -1) > 0) else cls[1:]
             if cls == ():
-                return None
+                return QBCNF(self.quantifiers, None)
             if cls is not None:
                 new_clauses.add(cls)
         return QBCNF(self.quantifiers, frozenset(new_clauses))
@@ -47,7 +50,7 @@ def eval(quantifiers, clauses):
     clause_pool, clause_ptrs, indexes = [None], set(), {}
     for clause in clauses:
         ref = 0
-        #print(clause)
+        # print(clause)
         for var in clause:
             node = (var, ref)
             if node not in indexes:
@@ -55,7 +58,7 @@ def eval(quantifiers, clauses):
                 clause_pool.append(node)
             ref = indexes[node]
         clause_ptrs.add(ref)
-    #print(clause_pool)
+    # print(clause_pool)
     print(len(clause_pool), len(clause_ptrs))
     print("start after", time() - t)
 
