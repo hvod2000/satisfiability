@@ -1,0 +1,5 @@
+In simple case like 2-SAT we can use algorithm from this paper:
+
+A LINEAR-TIME ALGORITHM FOR TESTING THE TRUTH OF CERTAIN QUANTIFIED BOOLEAN FORMULAS
+Bengt ASPVALL, Michael F. PLASS and Robert Endre TARJAN
+Received 22 August 1978, revised version received 16 October 1978

@@ -3,7 +3,7 @@ from functools import cache
 from time import time
 import sys
 
-print(sys.setrecursionlimit(2000))
+sys.setrecursionlimit(2000)
 
 
 @dataclass(frozen=True)
@@ -92,5 +92,5 @@ for i in range(m):
 clauses = frozenset(cls for cls in clauses if cls)
 print(time() - t)
 t = time()
-print(QBCNF(quantifiers, clauses).dp(1))
+print(eval(quantifiers, clauses))
 print(time() - t)
