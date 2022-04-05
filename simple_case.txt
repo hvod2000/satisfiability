@@ -3,3 +3,10 @@ In simple case like 2-SAT we can use algorithm from this paper:
 A LINEAR-TIME ALGORITHM FOR TESTING THE TRUTH OF CERTAIN QUANTIFIED BOOLEAN FORMULAS
 Bengt ASPVALL, Michael F. PLASS and Robert Endre TARJAN
 Received 22 August 1978, revised version received 16 October 1978
+
+Alternative algorithm:
+Iterate over all variables and check if u and ~u are in different SCCs.
+Iterate over all variables, mark a component whenever you encounter an existential variable, and check whenever you see a universal variable.
+Iterate over all components in reverse topological order and keep track of components, from which you can reach a universal vertex.
+If there is a component with at least two universal vertices, or a component with a universal vertex, from which another universal
+vertex is reachable, then the formula is false.
